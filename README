@@ -5,6 +5,18 @@ Este painel foi desenvolvido por Marcos Carraro, ele é open source, alguns soft
 Cara serviço, tem uma pasta chamada include, nela tem algumas variaveis que deve ser ajustadas a sua necessidade.
 
 
+=================================================================================================
+
+Alguns software auxiliadores.
+
+Status de hardware
+http://phpsysinfo.sourceforge.net/
+
+Squid em tempo real
+http://samm.kiev.ua/sqstat/
+
+Demais classes como ping foram pegas da internet não tenho mais o desenvolvedor, mas fica os créditos a ele(a).
+
 ==================================================================================================
 - Para o dhcp-history funcionar
 apt-get install nmap
