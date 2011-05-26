@@ -1,0 +1,8 @@
+#!/bin/bash
+rm -rf /var/squidcache/*
+/etc/init.d/squid stop
+mkdir -p /var/squidcache/
+chmod -R 777 /var/squidcache
+/usr/sbin/squid -z
+/etc/init.d/squid start
+exit 0

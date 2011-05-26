@@ -1,0 +1,36 @@
+lease 172.16.1.122 {
+  starts 4 2011/05/05 11:09:39;
+  ends 4 2011/05/12 11:09:39;
+  binding state active;
+  next binding state free;
+  hardware ethernet 00:1a:4d:ab:c6:9e;
+  uid "\001\000\032M\253\306\236";
+  client-hostname "micro12";
+}
+lease 172.16.1.10 {
+  starts 4 2011/05/05 11:44:08;
+  ends 4 2011/05/12 11:44:08;
+  binding state active;
+  next binding state free;
+  hardware ethernet f0:4d:a2:de:61:7c;
+  uid "\001\360M\242\336a|";
+  client-hostname "micro47";
+}
+lease 172.16.1.45 {
+  starts 4 2011/05/05 12:06:54;
+  ends 4 2011/05/12 12:06:54;
+  binding state active;
+  next binding state free;
+  hardware ethernet 90:e6:ba:09:85:c1;
+  uid "\001\220\346\272\011\205\301";
+  client-hostname "tv5";
+}
+lease 172.16.1.203 {
+  starts 4 2011/05/05 12:12:56;
+  ends 4 2011/05/12 12:12:56;
+  binding state active;
+  next binding state free;
+  hardware ethernet 00:1f:d0:f9:d9:6d;
+  uid "\001\000\037\320\371\331m";
+  client-hostname "micro50";
+}

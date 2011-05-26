@@ -1,0 +1,1 @@
+host nomew { hardware ethernet 08:00:2b:4c:a3:82; fixed-address 172.16.1.254;}

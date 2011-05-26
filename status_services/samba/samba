@@ -1,0 +1,55 @@
+#!/bin/bash
+
+ 
+versao=`smbstatus | awk '/^Samba version/{print $3}'`
+id=`smbstatus -S | awk  '{print $2}' | awk 'NR > 2'`
+conectatos=`smbstatus -S | awk  '{print $3}' | awk 'NR > 2'` 
+diretorio=`smbstatus -S | awk  '{print $1}' | awk 'NR > 3'` 
+file=`smbstatus -L | awk  '{print $8}' | awk 'NR > 2'`
+idfile=`smbstatus -L | awk  '{print $1}' | awk 'NR > 3'`
+
+
+
+echo "<HTML>
+<HEAD></HEAD>
+<BODY TOPMARGIN=50>
+<DIV ALIGN=CENTER>
+<FONT FACE=ARIAL COLOR=#000000 SIZE=4><b>Informações do Samba</b></FONT>
+<br>
+<br>
+<br>
+<br>
+<font face=arial color=#000000 size=3>Versão<b>$versao</b></font>
+<br>
+<br>"
+ 
+echo "<DIV ALIGN=CENTER>
+<TABLE BORDER=1 BORDERCOLOR=#000000 CELLPADDING=5 CELLSPACING=0>
+<TR BGCOLOR=#0044BB>
+<TH><FONT FACE=ARIAL COLOR=#FFFFFF SIZE=2>ID</TH>
+<TH><FONT FACE=ARIAL COLOR=#FFFFFF SIZE=2>Computador</TH>
+<TH><FONT FACE=ARIAL COLOR=#FFFFFF SIZE=2>Diretorio</TH>
+</TR>
+<TR BGCOLOR=#BBBBBB>
+<TD ALIGN=CENTER BGCOLOR=#BBBBBB><FONT FACE=ARIAL COLOR=#000000 SIZE=2><pre>$id</pre></TD>
+<TD ALIGN=CENTER BGCOLOR=#BBBBBB><FONT FACE=ARIAL COLOR=#000000 SIZE=2><pre>$conectatos</pre></TD>
+<TD ALIGN=CENTER BGCOLOR=#BBBBBB><FONT FACE=ARIAL COLOR=#000000 SIZE=2><pre>$diretorio</pre></TD>
+</TABLE>
+
+<br>
+
+<DIV ALIGN=CENTER>
+<TH>Solicitações</TH>
+<TABLE BORDER=1 BORDERCOLOR=#000000 CELLPADDING=5 CELLSPACING=0>
+<TR BGCOLOR=#0044BB>
+<TH><FONT FACE=ARIAL COLOR=#FFFFFF SIZE=2>ID</TH>
+<TH><FONT FACE=ARIAL COLOR=#FFFFFF SIZE=2>Arquivo</TH>
+</TR>
+<TR BGCOLOR=#BBBBBB>
+<TD ALIGN=CENTER BGCOLOR=#BBBBBB><FONT FACE=ARIAL COLOR=#000000 SIZE=2><pre>$idfile</pre></TD>
+<TD ALIGN=CENTER BGCOLOR=#BBBBBB><FONT FACE=ARIAL COLOR=#000000 SIZE=2><pre>$file</pre></TD>
+</TABLE>
+
+</DIV>
+</BODY>
+</HTML>"

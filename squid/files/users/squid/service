@@ -1,0 +1,4 @@
+#!/bin/bash
+service squid -k kill
+sleep 5
+service squid

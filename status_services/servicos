@@ -1,0 +1,76 @@
+#!/bin/bash
+
+tcp=`sudo /bin/netstat -nlp | awk '/^tcp/{print $1}'`
+iptcp=`sudo /bin/netstat -nlp | awk '/^tcp/{print $4}' | cut -d":" -f1`
+portatcp=`sudo /bin/netstat -nlp | awk '/^tcp/{print $4}' | cut -d":" -f2`
+proctcp=`sudo /bin/netstat -nlp | awk '/^tcp/{print $7}' | cut -d"/" -f1`
+servtcp=`sudo /bin/netstat -nlp | awk '/^tcp/{print $7}' | cut -d"/" -f2`
+
+udp=`sudo /bin/netstat -nlp | awk '/^udp/{print $1}'`
+ipudp=`sudo /bin/netstat -nlp | awk '/^udp/{print $4}' | cut -d":" -f1`
+portaudp=`sudo /bin/netstat -nlp | awk '/^udp/{print $4}' | cut -d":" -f2`
+procudp=`sudo /bin/netstat -nlp | awk '/^udp/{print $6}' | cut -d"/" -f1`
+servudp=`sudo /bin/netstat -nlp | awk '/^udp/{print $6}' | cut -d"/" -f2`
+
+proto=`sudo /bin/netstat -an | awk '/ESTAB/ {print $1}'`
+endlocal=`sudo /bin/netstat -an | awk '/ESTAB/ {print $4}'`
+endremoto=`sudo /bin/netstat -an | awk '/ESTAB/ {print $5}'`
+
+resumo=`sudo /bin/netstat -a -n| sed '/^tcp/!d'|cut -c 68-|sort|uniq -c|sort -n`
+
+
+echo " 
+<link rel='stylesheet' href='style.css' type='text/css'>
+<title>Conexões</title>
+<center>
+
+<table>
+<tr>
+<th COLSPAN=5>Serviços</th>
+</tr>
+<tr>
+<TH>Serviços</TH>
+<TH>Processo</TH>
+<TH>IP</TH>
+<TH>Porta</TH>
+<TH>Protocolo</TH>
+</TR>
+<TR>
+<TD VALIGN=TOP><pre>$servtcp<br>$servudp</pre></TD>
+<TD VALIGN=TOP><pre>$proctcp<br>$procudp</pre></TD>
+<TD VALIGN=TOP><pre>$iptcp<br>$ipudp</pre></TD>
+<TD VALIGN=TOP><pre>$portatcp<br>$portaudp</pre></TD>
+<TD VALIGN=TOP><pre>$tcp<br>udp</pre></TD>
+</TR>
+</TABLE>
+
+<DIV ALIGN=CENTER>
+<TABLE>
+<TR>
+<TH COLSPAN=5>Conexões Estabelecidas</TH>
+</TR>
+<TR>
+<TH>Protocolo</FONT></TH>
+<TH>Endereço Local</FONT></TH>
+<TH>Endereço Remoto</FONT></TH>
+</TR>
+<TR>
+<TD VALIGN=TOP><pre>$proto</pre></TD>
+<TD VALIGN=TOP><pre>$endlocal</pre></TD>
+<TD VALIGN=TOP><pre>$endremoto</pre></TD>
+</TR>
+</TABLE>
+
+<DIV ALIGN=CENTER>
+<TABLE>
+<TR>
+<TH COLSPAN=5>Resumo</TH>
+</TR>
+</TR>
+<TR>
+<TD VALIGN=TOP><pre>$resumo</pre></TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>"

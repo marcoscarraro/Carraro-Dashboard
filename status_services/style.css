@@ -1,0 +1,39 @@
+/*DIV*/
+
+body { 
+font: normal 12px verdana, arial, helvetica, sans-serif;
+margin:5px auto;
+width: 450px;
+}
+
+.titulo {
+font-family: Verdana;
+font-size: 17px;
+font-style: normal;
+font-weight: normal;
+color: green;
+}
+
+A:link {text-decoration:none}
+A:visited {text-decoration:none}
+A:active {text-decoration:none}
+A:hover {text-decoration:none}
+a img {border-width:0;}
+
+/*TABELAS*/
+
+table{
+border-collapse: collapse;
+border: 1px solid #666666;
+font: normal 12px verdana, arial, helvetica, sans-serif;
+color: #363636;
+background: #f6f6f6;
+width: 450px;
+margin:5px auto; 
+}
+
+table, td, th
+{
+border:1px solid #666666;
+}
+

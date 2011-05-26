@@ -1,0 +1,116 @@
+/* "connections" table */
+TABLE.result{
+border-collapse: collapse;
+border: 1px solid #666666;
+font: normal 12px verdana, arial, helvetica, sans-serif;
+color: #363636;
+}
+TABLE.result TH{
+	font-family: Verdana;font-size:14px;
+}
+TABLE.result TD{
+	font-family: Verdana;font-size:11px;border:1px solid #c0c0c0;padding:2px;
+border-collapse: collapse;
+border: 1px solid #666666;
+font: normal 12px verdana, arial, helvetica, sans-serif;
+color: #363636;
+}
+TABLE.result TR.total TD{
+	background-color:#b8b8b8;
+}
+
+TABLE.result TH{
+	background-color:#b8b8b8;
+	white-space: nowrap; padding: 0px 2px;
+}
+
+TABLE.result tr.odd td        {
+	background-color: :#E9E9E9;
+}
+TABLE.result tr.odd td {
+	background-color: #fff;
+}
+TABLE.result td#highlight     {
+	background-color: #e9e9e9;
+}
+
+
+/* top header */
+DIV.header{
+border-collapse: collapse;
+border: 1px solid #666666;
+font: normal 12px verdana, arial, helvetica, sans-serif;
+color: #363636;
+background: #f6f6f6;
+margin-bottom:10px;padding:3px;
+font-family: Verdana;font-size:12pt;
+}
+.copyleft,SELECT{
+	font-family: Verdana;font-size:10px;
+}
+.copyleft A{
+	text-decoration:none
+}
+.copyleft A:HOVER{
+	text-decoration:underline
+}
+FORM{
+	margin:0;padding:0;
+}
+
+#dhtmltooltip{
+	position: absolute;
+	/* width: 350px; */
+	border: 2px solid black;
+	padding: 2px;
+	background-color: lightyellow;
+	visibility: hidden; 
+	z-index: 100;
+	font-family: Verdana; font-size: 10px;
+}
+
+
+#dhtmlpointer{
+	position:absolute;
+	left: -300px;
+	z-index: 101;
+	visibility: hidden;
+}
+
+
+.botao{
+margin:10px 10px 10px 0;
+font-weight: bold;
+line-height: 1;
+padding: 4px 6px;
+cursor:pointer;
+color: #fff;
+text-align: center;
+background: #57A000;
+background: -moz-linear-gradient
+(top, #a5b8da 0%, #7089b3 100%);
+background: -webkit-gradient
+(linear, 0% 0%, 0% 100%,
+from(#a5b8da), to(#7089b3));
+border: 1px solid #5c6f91;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+border-radius: 8px;
+}
+
+.input {
+font-family: Arial, Verdana;
+font-size: 12px;
+padding: 5px;
+border: 1px solid #b9bdc1;
+width: 50px;
+color: #797979;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+border-radius: 8px;
+}
+
+A:link {text-decoration: none; color: green;}
+A:visited {text-decoration: none; color: black;}
+A:active {text-decoration: none}
+A:hover {text-decoration: underline; color: red;}

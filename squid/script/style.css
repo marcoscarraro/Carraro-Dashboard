@@ -1,0 +1,67 @@
+/*DIV*/
+
+body { 
+font: normal 12px verdana, arial, helvetica, sans-serif;
+margin:5px auto;
+width: 450px;
+}
+
+.cuidado {
+font-family: Verdana;
+font-size: 26px;
+font-style: normal;
+font-weight: bold;
+color: red;
+}
+
+.titulo {
+font-family: Verdana;
+font-size: 22px;
+font-style: normal;
+font-weight: normal;
+color: black;
+}
+
+.botao{
+margin:10px 10px 10px 0;
+font-weight: bold;
+line-height: 1;
+padding: 4px 6px;
+cursor:pointer;
+color: #fff;
+text-align: center;
+background: #57A000;
+background: -moz-linear-gradient
+(top, #a5b8da 0%, #7089b3 100%);
+background: -webkit-gradient
+(linear, 0% 0%, 0% 100%,
+from(#a5b8da), to(#7089b3));
+border: 1px solid #5c6f91;
+-moz-border-radius: 8px;
+-webkit-border-radius: 8px;
+border-radius: 8px;
+}
+
+
+A:link {text-decoration:none}
+A:visited {text-decoration:none}
+A:active {text-decoration:none}
+A:hover {text-decoration:none}
+a img {border-width:0;}
+
+/*TABELAS*/
+
+table{
+border-collapse: collapse;
+border: 1px solid #666666;
+font: normal 12px verdana, arial, helvetica, sans-serif;
+color: #363636;
+background: #f6f6f6;
+width: 450px;
+margin:5px auto; 
+}
+
+table, td, th
+{
+border:1px solid #666666;
+}
