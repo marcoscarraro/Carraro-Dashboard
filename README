@@ -1,0 +1,151 @@
+ATENÇÃO
+
+Este painel foi desenvolvido por Marcos Carraro, ele é open source, alguns software nele presente foram retirados da internet, e modificados, você pode modificar, e se possivel, avisar o autor do sistema, você não pode vender o painel.
+
+Cara serviço, tem uma pasta chamada include, nela tem algumas variaveis que deve ser ajustadas a sua necessidade.
+
+
+==================================================================================================
+- Para o dhcp-history funcionar
+apt-get install nmap
+apt-get install sudo
+vim /etc/sudoers
+add >> www-data ALL = NOPASSWD: /usr/bin/nmap
+www-data ALL = NOPASSWD: /etc/init.d/dhcp3
+Editar o arquivo dhcp/includes/files.inc.php
+Certificar que o dhcp esta dando a saida do dhcpd.leases
+Configurar "include" no dhcp.conf para pode amarar IP ao MAC
+
+No arquivo dhcpd.conf Adicione estas linhas.
+
+lease-file-name "/var/www/painel/admin/dhcp/files/dhcpd.leases";
+#IP AMARRADO AO MAC
+include "/var/www/painel/admin/dhcp/files/dhcpfile";
+
+=====================================================================================================
+
+- Para squid funcionar.
+Ter o mesmo instalado com o squid.conf especial
+Criar as entradas no sudoers
+www-data ALL = NOPASSWD: /usr/sbin/squid
+www-data ALL = NOPASSWD: /usr/bin/htpasswd
+Para poder acresentar usuarios, e poder reinicair o squid
+Trocar todas entradas do arquivo squid/includes/files.inc.php "Verificar permissão de escrita e leitura"
+E verificar no squid o apontamento para todos os arquivos
+Altere no admin/squid/script/limpeza os diretorios
+
+OBS:. Voce deve configurar o squid da sua maneira, este é somente um exemplo.
+
+
+#===============================#
+#				#
+#	AUTENTICAÇÃO		#
+#				#
+#===============================#
+auth_param basic program /usr/lib/squid/ncsa_auth /var/squid_acl/users/squid/usersquid
+auth_param basic realm Para proseguir digite usuario e senha
+auth_param basic children 5
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive off
+
+#===============================#
+#				#
+#	ACLS PARA A REDE	#
+#				#
+#===============================#
+acl rede_interna src 187.39.161.198/21
+
+acl sites_s_senha dstdomain "/var/squid_acl/liberados/s_senha/s_senha"
+http_access allow sites_s_senha
+
+acl macliberado arp "/var/squid_acl/liberados/mac/mac"
+http_access allow macliberado
+
+acl macbloqueado arp "/var/squid_acl/bloqueados/mac/mac_bloqueadas"
+http_access deny macbloqueado
+
+acl usuarios proxy_auth REQUIRED
+
+#===============================#
+#				#
+#	USUARIOS LIVRES		#
+#				#
+#===============================#
+acl userlivre proxy_auth "/var/squid_acl/users/liberados/liberados"
+
+http_access allow userlivre
+
+#===============================#
+#				#
+#	USUARIOS DEFAULTS	#
+#				#
+#===============================#
+acl userdefault proxy_auth "/var/squid_acl/users/default/default"
+acl sitesbloqueados dstdomain -i "/var/squid_acl/bloqueados/dominios/sites_bloqueados"
+acl palavrasbloqueadas url_regex -i "/var/squid_acl/bloqueados/palavras/pl_bloqueadas"
+acl extbloqueadas urlpath_regex -i "/var/squid_acl/bloqueados/extensoes/ext_bloqueadas"
+
+http_access deny palavrasbloqueadas
+http_access deny extbloqueadas
+http_access deny sitesbloqueados
+http_access allow userdefault !sitesbloqueados !palavrasbloqueadas !extbloqueadas
+
+#===============================#
+#				#
+#	USUARIOS BLOQUEADOS	#
+#				#
+#===============================#
+acl userbloqueados proxy_auth "/var/squid_acl/users/bloqueados/bloqueados"
+acl sitesliberados dstdomain -i "/var/squid_acl/liberados/dominios/sites_liberados"
+acl palavrasliberadas url_regex -i "/var/squid_acl/liberados/palavras/pl_liberados"
+acl extensoes urlpath_regex -i "/var/squid_acl/bloqueados/extensoes/ext_bloqueadas"
+
+http_access deny extensoes
+http_access allow palavrasliberadas
+http_access allow sitesliberados
+http_access deny userbloqueados !sitesliberados !palavrasliberadas
+#===============================#
+#				#
+#	http_acess PARA A REDE	#
+#				#
+#===============================#
+
+http_access allow usuarios userlivre
+http_access allow usuarios userdefault
+http_access allow usuarios userbloqueados
+
+http_access deny !rede_interna
+
+
+=======================================================================================================
+
+Arquivo /etc/sudoeres
+
+- Para efetuar o desligamento/reiniciar
+www-data ALL = NOPASSWD: /sbin/halt
+www-data ALL = NOPASSWD: /sbin/reboot
+
+- Para fazer a leitura dos logs
+www-data ALL = NOPASSWD: /var/log/messages
+www-data ALL = NOPASSWD: /var/firewall/firewall.log
+
+- Para fazer a leitura dos serviços
+www-data ALL = NOPASSWD: /bin/netstat
+
+www-data ALL = NOPASSWD: /usr/bin/nmap
+www-data ALL = NOPASSWD: /etc/init.d/dhcp3
+
+www-data ALL = NOPASSWD: /usr/sbin/squid
+www-data ALL = NOPASSWD: /usr/bin/htpasswd
+www-data ALL = NOPASSWD: /etc/init.d/squid
+
+=======================================================================================================
+
+- Services
+Pode ser configurado algum serviço a mais, no arquivo status_services/services_conf.php 
+Adicione a parte nome do serviço e demais opções, o arquivo é simples e fácil de se entender.
+
+=======================================================================================================
+
+Att Marcos Carraro
+marcos.g.carraro@gmail.com
